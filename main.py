@@ -17,7 +17,6 @@ def process_file(filepath):
     result = {}
     objects = []
     with AnyReader([Path(filepath)]) as reader:
-        print(reader.connections)
         connections = [x for x in reader.connections if
                        x.topic in ['/spot/camera/frontright/image', '/spot/camera/frontleft/image']]
         for connection, timestamp, rawdata in reader.messages(connections=connections):
@@ -47,7 +46,7 @@ def process_file(filepath):
                     labels.add(names[int(c)])
     result = {
         'objects': objects,
-        'labels': labels
+        'labels': list(labels)
     }
     return result
 
@@ -56,7 +55,7 @@ def main():
     filepaths = glob.glob('/input/*')
     result = process_file(filepaths[0])
     print(result)
-    with open("/output.result", "w") as f:
+    with open("/output/result.json", "w") as f:
         f.write(json.dumps(result))
 
 if __name__=='__main__':
