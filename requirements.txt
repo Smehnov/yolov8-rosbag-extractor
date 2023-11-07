@@ -1,0 +1,4 @@
+rosbags
+numpy
+ultralytics==8.0.20
+Pillow
