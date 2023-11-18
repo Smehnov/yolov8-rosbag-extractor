@@ -52,10 +52,10 @@ def process_file(filepath):
 
 
 def main():
-    filepaths = glob.glob('/input/*')
+    filepaths = glob.glob('/inputs/*')
     result = process_file(filepaths[0])
     print(result)
-    with open("/output/result.json", "w") as f:
+    with open("/outputs/result.json", "w") as f:
         f.write(json.dumps(result))
 
 if __name__=='__main__':
